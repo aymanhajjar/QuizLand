@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}QuizLand{% endblock %}</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <link rel="stylesheet" href="{% static 'homestyle.css' %}">
+        <link rel="stylesheet" href="{% static 'profile.css' %}">
+        <link rel="stylesheet" href="{% static 'transitions.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+        {% block head %}
+        {% endblock %}
+    </head>
+
+    {% csrf_token %}
+    <body>
+        <script language="JavaScript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="{% static 'home.js' %}" ></script>
+        <script src="{% static 'create.js' %}"></script>
+        <script src="{% static 'profile.js' %}"></script>
+        
+        
+        <div class="header" id="quizheader">
+            <h2 id="quizzy"><a class = "ref" href="{% url 'home' %}">QuizLand</a></h2>
+
+            <div class="searchdrop">
+            <input autocomplete="off" class = "form-control searchbar" type="text" name = "search" id="txtSearch" onkeyup="makeAjaxRequest()"  placeholder="Search Quizzes"/>
+            </div>
+
+            <div class="headbuttons">
+                <button class="btn" onclick="location.href = '/'"><i class="fa fa-home"></i></button>
+                <!-- <button class="btn" onclick="location.href = 'messaging'"><i class="fas fa-comments"></i></button>  -->
+                <button class="btn" onclick="location.href = `{% url 'explore' %}`"><i class="fas fa-compass"></i></button>
+
+                {% if user.is_authenticated %}
+
+                <button class="btn" onclick="location.href = `{% url 'followed' %}`"><i class="fas fa-user-friends"></i></button>
+                <button class="btn" onclick="location.href = `{% url 'create' %}`"><i class="fas fa-plus-square"></i></button>
+
+                
+
+                <div class = "accdrop">
+                    <button class="btn menubtn" id="profbutton" onclick="showprof()"><img id = "ppic" src="{{ thisuser.ppic.url }}" style="pointer-events: none;"/></button>
+                        <div id="profilemenu" class = "dropmenu">
+                            <button class="btn btn-outline-secondary" onclick="location.href='{% url 'profile' user.username %}'">Profile</button>
+                            <button class="btn btn-outline-secondary" onclick="location.href='{% url 'create' %}'">Create a Quiz</button>
+                            <button class="btn btn-outline-secondary" onclick="location.href='{% url 'edit' %}'">Settings</button>
+                            <button class="btn btn-outline-secondary" onclick="location.href='{% url 'logout' %}'">Logout</button>
+                        </div>
+                </div>
+
+                {% else %}
+
+                <a href="{% url 'login' %}"><button class="btn">Login</button></a>
+                <a href="{% url 'register' %}"><button class="btn">Register</button></a>
+
+                {% endif %}
+                
+            </div>
+
+            
+        </div>
+        <div id="content">
+            {% block body %}
+            {% endblock %}
+            
+        </div>
+        <div class="searchresults" id="searchpage">
+            <h3 class="searchtitle"> Search Results for "<span id="txt"></span>": </h3>
+            <span class="sumtext">Searching for Quizzes and Users:</span>
+            <div id="resultsdiv">
+            </div>
+        </div>
+    </body>
+
+    
+
+    
+</html>

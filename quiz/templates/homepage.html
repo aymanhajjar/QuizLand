@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="sidescore">
+    <div class="board">
+        <h4>Daily Scoreboard</h4>
+        {% for prof in scoreprofs %}
+            <div class="player" onclick="location.href=`{% url 'profile' prof.owner.username %}`"">
+                <h6 class="playername"><img class="scorepic" src="{{ prof.owner.ppic.url }}">{{ prof.owner.username }}</h6>
+                <h6 class="score"><b>Score: </b> {{ prof.points }}</h6>
+            </div>
+        {% endfor %}
+        </div>
+</div>
+
+<div class="main">
+    <h3>Latest quizzes</h3>
+
+    {% for quiz in quizzes %}
+        <div class="quizcontainer" onclick="location.href='quiz/{{ quiz.name }}'">
+            <div class="firstcol">
+                <h4 class="quizname">{{quiz.name}}</h4>
+                {% if quiz.description %}
+                    <p class="quizdesc">
+                        <b>Description:</b><br>
+                        {{quiz.description}}
+                    </p>
+                {% endif %}
+                <p class="quizby"><b>By: </b><img class="quizpic" src="{{ quiz.owner.ppic.url }}"> {{quiz.owner.username}}</p>
+                <p class="quizdate"><b>Posted {{quiz.get_date}}</p>
+            </div>
+            <div class="seccol">
+                <p class="quiznumber"><b>Number of questions: </b>{{quiz.n_ofquestions}}</p>
+                <p class="quizpoints"><b>Total Points: </b>{{quiz.totalpoints}}</p>
+
+                {% if quiz.totaltime > 0 %}
+                    <p class="quizpoints"><b>Time To Beat:  </b> {{quiz.totaltime}}s</p>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class = "btnbottom">
+        <button class="btn more" onclick="location.href = `{% url 'explore' %}`">See More</button>
+    </div>
+</div>
+{% endblock %}

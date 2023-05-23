@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="main">
+<div class="mrgin">
+    <h3>All quizzes</h3>
+
+    <div id="explore_quizzes">
+        {% include 'explore_quiz.html' with quizzes=quizzes %}
+    </div>
+</div>
+</div>
+
+<div id = "ajaxdiv">
+    <p>.</p>
+</div>
+
+{% endblock %}

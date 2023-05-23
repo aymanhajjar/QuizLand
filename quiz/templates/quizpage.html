@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<script src="/static/quiz.js"></script>
+<div class="quiznamecont">
+    <b class="qnamepage">{{ quiz.name }}</b>
+    <span class="qownerpage">A Quiz by <b>{{ quiz.owner.username }} </b></span>
+</div>
+<div class="quizdets">
+    <div class="contain">
+    <div class="startpage">
+        <b>Description:</b><br>
+        <p class="descquiz">{{quiz.description}}</p>
+        <div class="middiv">
+            <div class="firstcol">
+                <p class="quiznumber"><b>Number of questions: </b>{{quiz.n_ofquestions}}</p>
+                <p class="quizby"><b>By: </b><a href="/profile/{{quiz.owner.username}}"><img class="quizpic" src="{{ quiz.owner.ppic.url }}"> {{quiz.owner.username}}</a></p>
+                <p class="quizdate"><b>Posted {{quiz.get_date}}</p>
+            </div>
+            <div class="seccolquiz">
+                <p class="quizpoints"><b>Total Points: </b>{{quiz.totalpoints}}</p>
+
+                {% if quiz.totaltime > 0 %}
+                    <p class="quizpoints"><b>Time To Beat:  </b> {{quiz.totaltime}}s</p>
+                {% endif %}
+            </div>
+        </div><br><br>
+        <div class="info">
+        Remember: <ul>
+        <li> Once you click "Next" on a question you can't go back!</li>
+        <li> You can click "Retry Quiz" to restart the quiz only once, but your timer will get cut in half.</li>
+        <li> After submitting, you can no longer take this quiz.</li>
+        <li> Do not reload or leave the page while taking the quiz, otherwise you will get a 0.</li>
+    </ul>
+    </div>
+    {% if user.is_authenticated %}
+        {% if user != quiz.owner %}
+            {% if not taken %}
+            <div class="startdiv">
+                <button class="startbtn" onclick="startquiz('{{quiz.name}}')">Start</button>
+            </div>
+            {% else %}
+            <div class="startdiv colorchg">
+                You have already taken this quiz<br>
+                <div class="res">{{result}}/{{quiz.totalpoints}}</div>
+            </div>
+            {% endif %}
+        {% else %}
+            <p>You can't take your own quiz!</p>
+        {% endif %}
+    {% else %}
+        <p>Login or Sign Up to take this quiz!</p>
+    {% endif %}
+    </div>
+    
+    <div class="ctdwntimer">Time Left: <span id="ctdwntimer"></span>s</div>
+<form method = "POST" class = "quizform" id="quizform" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id="quizquestions">
+        <p id="questionname"><b>How are you?</b></p>
+        <div id="quizchoices">
+            <input id="ch1" class="choice" type="radio" name="q1" onclick="remchoice(1)" hidden disabled> <span class="textchoice" id="choicetext1" hidden>Text 1</span><br>
+            <input id="ch2" class="choice" type="radio" name="q1" onclick="remchoice(2)" hidden disabled> <span class="textchoice" id="choicetext2" hidden>Text 2</span><br>
+            <input id="ch3" class="choice" type="radio" name="q1" onclick="remchoice(3)" hidden disabled> <span class="textchoice" id="choicetext3" hidden>Text 3</span><br>
+            <input id="ch4" class="choice" type="radio" name="q1" onclick="remchoice(4)" hidden disabled> <span class="textchoice" id="choicetext4" hidden>Text 4</span><br>
+        </div>
+        <p class="qpoints"><b>Points: </b><span id="qpoints"></span></p>
+    </div>
+
+    <div class="summary">
+        <p class="summarytext"><b>Summary:</b></p>
+        <p class="sumtext">Here's a review of your answers. When done, feel free to submit!</p>
+        <ul id="qlist">
+        </ul>
+    </div>
+    <div id="loading"><img style="height: 200px; width:200px" src="/media/loader.gif"></div>
+    <div class="quizres" id="quizres">
+        <div class="results">
+            <p class="summarytext"><b>Results:</b></p>
+            <p class="sumtext">Here's an overview of your answers. For each correct answer, you will get its points added to the total on your profile</p>
+            <ul id="reslist">
+            </ul>
+            <div id="respoints">
+            </div>
+        </div>
+    </div>
+
+    <div class="buttons" style="padding-bottom: 30px;">
+        <div class="btnstyle">
+            <button class = "quizbtnr" type="button" id="prevqBtn" onclick="restartquiz()"> Restart Quiz</button>
+            <button class = "quizbtng" type="button" id="nextqBtn" onclick="showq(1)">Next Question ></button>
+        </div>
+    </div>
+
+    <div class="stepblock" style="text-align:center;padding-top:40px; padding-bottom: 20px;">
+        <span id="addsteps"></span>
+    </div>
+
+    <input type="number" name="total" id="total" hidden>
+    <div id="arraypost">
+    </div>
+</form>
+
+</div>
+
+<div id="countmodal" class="ctmodal">
+    <p class="ctdwn">Quiz starting in <span id="ctdwn"></span>...</p> 
+ </div>
+
+</div>
+{% endblock body %}

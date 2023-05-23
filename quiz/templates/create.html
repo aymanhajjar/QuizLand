@@ -1,0 +1,99 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="contentdiv">
+
+    <h3>Create a quiz</h3>
+    <img src="../../media/create.png" style="height: 40px; width: 40px;">
+
+    <div class="create">
+        
+
+        <form class = "createform" id="createform" action="{% url 'create' %}" method="POST">
+            {% csrf_token %}
+        <div class= "tab" id="question1">
+            <h5>First, let's pick a name and description:</h5>
+                <label>Name:</label>
+                <input autocomplete="off" class="form-control" id="quiznamefield" name="name" type="text" placeholder="Quiz Name" autocomplete="off" required>
+                <label>Description:</label>
+                <textarea class="form-control" id="quizdescfield" name="desc"></textarea>
+                <label class="timertext">Do you want to add a timer?</label><br>
+                <input class="timecheck" id="checkbox1" type="checkbox" name="timercheck"> <label>Timer:</label> 
+                <input class="timerfield" id="checkfield" type="number" name="timer" disabled> s
+        
+        </div>
+
+        <div class="tab">
+            <h5>Now, add your first question:</h5>
+            <div class="qdesc">
+                Add your first question, add up to 4 choices and put the correct choice in the first choice field. Don't worry, choices will be mixed up in the quiz.
+                </div>
+            <input autocomplete="off" type="text" class="form-control" id="q1" name="question1" placeholder="Question 1">
+            <div class="questiondetails">
+                <div class="choices">
+                    <input autocomplete="off" type="text" class="form-control choicefield" name="choice1q1" placeholder="Correct Choice"> 
+                    <input autocomplete="off" type="text" class="form-control choicefield" name="choice2q1" placeholder="Choice 2">
+                    <input autocomplete="off" type="hidden" id="choice3q1" class="form-control choicefield" name="choice3q1" placeholder="Choice 3" disabled> 
+                    <input autocomplete="off" type="hidden" id="choice4q1" class="form-control choicefield" name="choice4q1" placeholder="Choice 4" disabled> 
+                </div>
+                <div class="points">
+                    <label>Points: </label> <input id="pointfield1" class="pointfield" name="pointfield1" type="number" min="0" max="10" onkeyup="modified()" oninput="this.value = Math.abs(this.value); if (this.value>10) {this.value = 10}"><br>
+                    <span>Choices:</span><br>
+                    <button type='button' class="btn" id="removebtnq1" onclick="changechoice(-1, 1)" disabled><i class="fas fa-minus"></i></button>  
+                    <span id="choicenumq1">2</span>   
+                    <button type='button' class="btn" id="addbtnq1" onclick="changechoice(+1, 1)"><i class="fas fa-plus"></i></button><br>
+                </div>
+            </div>
+        </div>
+
+        <span id="addtabs">
+
+        </span>
+
+        <div class="tab">
+            <h5>Here's what we have so far:</h5><br>
+            <div class="details">
+                <div class="firstcol">
+                    <h4 class="quizname" id="quizname"></h4>
+                    <p class="quizdesc">
+                        <b>Description:</b><br><span id="quizdesc"></span>
+                    </p>
+                    <p class="timerdetails">
+                        <b>Timer: </b><span id="timerdetails"></span>
+                    </p>
+
+                </div>
+                <div class="seccol right">
+                    <p class="quiznumber"><b>Number of questions: </b><span id="quiznumber"></span></p>
+                    <input type="hidden" name="nofq" value="1" id="nofq">
+                    <p class="quizpoints"><b>Total Points: </b><span id="quizpoints"></span></p>
+                    <input type="hidden" name="totalpoints" value="0" id="totpoints">
+                </div>
+            </div>
+
+        </div>
+            <div class="buttonscreate" style="overflow:auto;">
+                <div style="float:right;">
+                  <button class = "btn" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                  <button type='button' class="btn remove" id="removeq" onclick="removequestion()">Remove Question</button>
+                  <button type='button' class="btn add" id="addaq" onclick="addaquestion()">Add a Question</button>
+                  <button class = "btn" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                </div>
+              </div>
+
+            <div style="text-align:center;margin-top:40px;">
+                <span class="step"></span>
+                <span class="step"></span>
+                <span id="addsteps"></span>
+                <span class="step"></span>
+              </div>
+
+            <div id="totalquestions">
+               Number of Questions: <span id="tot">2</span><br>
+                <span id="maximum">Maximum number of questions reached!</span>
+            </div>
+              
+            </form>
+    </div>
+</div>
+{% endblock %}

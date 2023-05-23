@@ -1,0 +1,805 @@
+body, html {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
+    height: 100%;
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display:flex; 
+    flex-direction: row; 
+    justify-content: center; 
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    border-style: solid;
+    border-width: 0.5px;
+    background-color: white;
+    box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.2);
+    
+}
+.ref {
+    text-decoration: none;
+    color:black;
+}
+.ref:hover {
+    color:dimgray;
+    text-decoration: none;
+}
+#quizzy {
+    font-family:cursive;
+    padding-right: 20px;
+    padding-left: 10px;
+    margin-right: auto;
+    float: left;
+    text-align: left;
+}
+
+.headbuttons {
+    float: right;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    
+  }
+
+.sticky + .content {
+    padding-top: 400px;
+    background-color: white;
+}
+
+#content {
+    background-color:#fafafa;
+    min-height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+.show {display:block;}
+
+#ppic {
+    width:30px;
+    height: 30px;
+    border-radius: 30px;
+}
+
+.accdrop {
+    position: relative;
+    display: inline-block;
+  }
+
+.dropmenu {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+    padding: 10px;
+    
+}
+.show {display:block;}
+.hide {display: none;}
+
+.btn-outline-secondary{
+    padding: 8x;
+    margin: 5px;
+    width: 100%;
+}
+
+.searchdrop {
+    position: relative;
+    display: inline-block;
+    margin-right: auto;
+}
+.show {display:block;}
+
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
+#txtSearch {
+    margin-right: auto;
+    min-width:350px;
+    text-align: left;
+    background-color: #fafafa;
+    border-radius: 10px;
+}
+
+.searchhref {
+    color: black;
+}
+
+.searchhref:hover{
+    background-color:lightslategray;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    margin: 5px;
+}
+
+.searchcontainer{
+    background-color: lightgrey;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.fa-plus-square {
+    color:blue
+}
+
+.sidescore {
+    height: 100%; 
+    width: 40%; 
+    position: fixed; 
+    z-index: 1; 
+    top: 0; 
+    left: 0;
+    background-color: rgb(0, 0, 82); 
+    overflow-x: hidden; 
+    padding-top: 120px;
+  }
+  
+  .main {
+    padding-top: 100px;
+  }
+
+  .contentdiv {
+    padding-top: 100px;
+    background-color: rgb(255, 254, 208);
+    height: 100vh;
+  }
+
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  .board {
+      width: 70%;
+      background-color: rgb(255, 154, 242);
+      margin: auto;
+      border-radius: 10px;
+      padding-top: 20px;
+      height: 90%;
+  }
+
+  .quizcontainer {
+      background-color: rgb(236, 236, 236);
+      margin-top: 20px;
+      margin-left: 45%;
+      margin-right: 10%;
+      border-radius: 5px;
+      padding: 10px;
+      text-align: left;
+      padding-left: 20px;
+      border: 0.5px gray solid;
+      overflow: hidden
+  }
+
+  .quizcontainer:hover {
+      background-color: rgb(252, 252, 216);
+      cursor: pointer;
+  }
+
+  .firstcol{
+      float: left;
+  }
+  .seccol {
+      float: right;
+      margin-top: 10px;
+      margin-right: 10px;
+  }
+
+  .right {
+      margin-right: 100px;
+  }
+  .btnbottom {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      justify-content: center;
+      text-align: center;
+      margin-left: 33%;
+  }
+
+  .more{
+      font-size: 20px !important; 
+  }
+
+  .quizcontainer_explore {
+    background-color: rgb(238, 238, 238);
+    margin-top: 20px;
+    margin-left: 7%;
+    margin-right: 7%;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: left;
+    padding-left: 20px;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 1px;
+    border-color: darkgray;
+}
+
+.quizcontainer_explore:hover {
+    background-color: lightyellow;
+    cursor: pointer;
+}
+
+.quizpic{
+    height: 25px;
+    width: 25px;
+    border-radius: 25px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.scorepic{
+    height: 23px;
+    width: 23px;
+    border-radius: 23px;
+    margin-right: 10px;
+    margin-left: 5px;
+    margin-bottom: 0px;
+}
+
+.quizdate{
+    color: gray;
+    font-size: 12px;
+}
+
+.player {
+    background-color: darkviolet;
+    color: white;
+    width: 80%;
+    height: 9%;
+    margin: auto;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    padding-bottom: 5px;
+}
+
+.score {
+    float: right;
+    text-align: right;
+}
+
+.playername{
+    float: left;
+}
+
+.player:hover{
+    cursor: pointer;
+    background-color: violet;
+}
+
+.create{
+    margin-top: 40px;
+    text-align: left;
+    justify-content: center;
+    margin-left: 120px;
+}
+
+.createform {
+    max-width: 80%;
+    margin-left: 70px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+label{
+    margin-top: 20px;
+}
+
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+  
+.buttons {
+    margin-top: 20px;
+    margin-right: 200px;
+    background-color: gainsboro;
+    width: 100%;
+}
+.buttonscreate {
+    margin-top: 20px;
+    margin-right: 200px;
+    width: 100%;
+}
+
+.stepblock {
+    background-color: gainsboro;
+}
+
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none !important;
+ }
+
+ .choicefield {
+     max-width: 100%;
+     margin-top: 20px;
+ }
+ 
+ .timecheck{
+     margin-top: 0px;
+     margin-right: 5px;
+ }
+
+ .timertext {
+     margin-bottom: 0px;
+ }
+
+ .timerfield{
+     margin-left: 10px;
+     width: 8%;
+     border-radius: 5px;
+     border-width: 0.5px;
+ }
+
+ .tab {
+     display: none;
+ }
+
+.step.finished {
+    background-color: #ffc400;
+  }
+
+.step.active {
+    opacity: 1;
+}  
+
+input.invalid {
+    background-color: #ffdddd;
+}
+
+textarea.invalid {
+    background-color: #ffdddd;
+}
+
+.choices {
+    width: 120%;
+    margin-right: 80px;
+    float: left;
+}
+
+.pointfield {
+    margin-left: 10px;
+    width: 30%;
+    border-radius: 5px;
+    border-width: 0.5px;
+}
+
+.points {
+    display: inline-block;
+    width: 40%;
+}
+
+.questiondetails{
+    display: flex;
+}
+
+button:disabled {
+    color: lightgrey !important;
+}
+
+.btnstyle{
+    float:right; 
+    margin-right: 20%;
+}
+
+.add {
+    color: green !important;
+}
+
+#totalquestions {
+    text-align: center;
+    display: inline-block;
+    justify-content: center;
+    display: none;
+}
+
+.qdesc {
+    margin-bottom: 10px;
+}
+
+.details{
+    overflow: hidden;
+}
+
+#maximum {
+    display: none;
+    color: red;
+}
+
+.remove {
+    color: red !important;
+}
+
+.quiznamecont{
+    padding-top: 8%;
+    text-align: left;
+    padding-left: 50px;
+    font-size: 50px;
+    background-color: gray;
+    padding-bottom: 10px;
+    overflow: hidden;
+}
+
+.quizdets{
+    background-color:gainsboro;
+    text-align: left;
+    padding-left: 0px;
+    padding-top: 50px;
+}
+
+.descquiz {
+    padding-top: 10px;
+    padding-left: 50px;
+    padding-bottom: 20px;
+}
+
+.seccolquiz{
+    margin-top: 10px;
+    margin-left: 40%;
+}
+
+
+.startdiv{
+    padding-top: 29px;
+    margin-left: 40%;
+}
+
+.startbtn, .startbtn:focus{
+    border-style: none;
+    border-radius: 10px;
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    outline: none;
+}
+
+.startbtn:hover{
+    background-color: lightgray;
+}
+
+.startpage{
+    padding-left: 20%;
+}
+
+.ctmodal {
+    display: none; /* Hidden by default */
+    flex-direction: row;
+    justify-content: center;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4);
+}
+
+.ctdwn{
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 42%;
+    color: white;
+}
+
+.last {
+    width: 30px;
+    border-radius: 30%;
+}
+
+#quizquestions{
+    display: none;
+    justify-content: center;
+    padding-left: 20%;
+    margin-right: 20%;
+}
+
+.textchoice{
+    font-weight: normal;
+}
+
+.choice{
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.quizbtnr, .quizbtnr:focus{
+    display: none;
+    background-color: darkred;
+    border-radius: 10px;
+    width: 160px;
+    height: 30px;
+    color: white;
+    border: none;
+    font-size: 13px;
+    margin-right: 20px;
+    outline: none;
+}
+
+.quizbtng, .quizbtng:focus{
+    display: none;
+    background-color: green;
+    border-radius: 10px;
+    width: 160px;
+    height: 30px;
+    border: none;
+    color: white;
+    font-size: 13px;
+    outline: none;
+}
+
+#qpoints {
+    font-weight: normal;
+}
+
+.qpoints {
+    margin-top: 5px;
+}
+
+.qnamepage {
+    float: left;
+}
+
+.qownerpage {
+    float: right;
+    font-size: 18px;
+    color: white;
+    margin-right: 25px;
+    padding-top: 45px;
+}
+
+.summary {
+    font-size: 18px;
+    justify-content: center;
+    padding-left: 20%;
+    background-color: rgb(220, 220, 220);
+    margin-right: 20%;
+    height: fit-content;
+}
+
+.sumtext{
+    font-weight: normal;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.ctdwntimer {
+    margin-left: 60%;
+}
+
+.redtimer{
+    color: red;
+}
+
+.quiznamecontres {
+    padding-top: 100px;
+    text-align: left;
+    padding-left: 50px;
+    font-size: 50px;
+    background-color: gray;
+    padding-bottom: 10px;
+    overflow: hidden;
+}
+
+.quizres {
+    background-color:rgb(220, 220, 220);
+    height: 100%;
+    text-align: left;
+    padding-left: 0px;
+}
+
+.results {
+    font-size: 18px;
+    justify-content: center;
+    padding-left: 20%;
+    margin-right: 20%;
+}
+
+.res{
+    margin-left: 100px;
+}
+
+.colorchg{
+    color: darkred;
+}
+
+.searchresults {
+    background-color: rgb(240, 245, 255);
+    padding: 110px 30px;
+    min-height: 100%;
+    width: 100%;
+    margin:0;
+}
+
+.contain{
+    
+    height: 100%;
+}
+
+.info{
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none !important;
+    color: darkblue;
+}
+
+@media screen and (max-width: 751px) {
+    .header {
+        position: fixed;
+        display:flex; 
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    #txtSearch {
+        min-width:100%;
+        margin: auto;
+    }
+
+    .searchdrop {
+        margin: auto;
+        width: 80%;
+    }
+    
+    #quizzy {
+        margin: auto;
+        margin-bottom: 10px;
+    }
+
+    .main {
+        padding-top: 30px;
+    }
+
+    .sidescore {
+        position: relative;
+        width: 95%;
+        margin: auto;
+        margin-top: 170px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-radius: 8px;
+    }
+
+    .board {
+        width: 86%;
+        padding-bottom: 15px;
+    }
+    
+    .player {
+        width: 90%;
+    }
+
+    .quizcontainer {
+        margin: 15px auto;
+        width: 90%;
+    }
+
+    .searchresults {
+        margin-top: 80px; 
+    }
+
+    .quizcontainer_explore {
+        width:90%;
+        margin: 15px auto;
+    }
+
+    .mrgin {
+        margin-top: 140px;
+    }
+
+    .contentdiv {
+        margin-top: 80px;
+        width: 100%;
+        height: 120%;
+    }
+    
+    .create {
+        margin: auto;
+        padding-top: 15px;
+    }
+
+    #createform{
+        margin: auto;
+        width: 100%;
+    }
+
+    .timerfield {
+        width: 13%;
+    }
+    
+    .questiondetails {
+        display: block;
+        text-align: center;
+    }
+
+    .choices {
+        width: 100%;
+    }
+    
+    .quiznamecont{
+        margin-top: 150px;
+        text-align: center;
+        padding-left: 0px;
+    }
+
+    .qownerpage {
+        float: none;
+        font-size: 18px;
+        color: white;
+        margin: auto;
+        padding-top: 15px;
+        text-align: center;
+    }
+
+    .startpage{
+        padding-left: 0px;
+        text-align: center;
+        width: 90%;
+        margin: auto;
+    }
+
+    .descquiz {
+        padding-left: 0px;
+        text-align: center;
+    }
+
+    .quizdets{
+        text-align: center;
+        padding-left: 0px;
+    }
+    
+    .startdiv{
+        padding-top: 29px;
+        margin-left: auto;
+    }
+
+    .buttons {
+        margin: 20px auto;
+        background-color: gainsboro;
+        width: 100%;
+    }
+    
+    .summary {
+        padding-left: 0px;
+        margin: auto;
+        text-align: center;
+    }
+
+    .btnstyle{
+        float: none; 
+        margin: auto;
+    }
+}

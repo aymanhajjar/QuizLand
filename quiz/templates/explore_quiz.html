@@ -1,0 +1,22 @@
+{% for quiz in quizzes %}
+        <div class="quizcontainer_explore" onclick="location.href='quiz/{{ quiz.name }}'">
+            <div class="firstcol">
+                <h4 class="quizname">{{quiz.name}}</h4>
+                {% if quiz.description %}
+                    <p class="quizdesc">
+                        <b>Description:</b><br>
+                        {{quiz.description}}
+                    </p>
+                {% endif %}
+                <p class="quizby"><b>By: </b><img class="quizpic" src="{{ quiz.owner.ppic.url }}"> {{quiz.owner.username}}</p>
+                <p class="quizdate"><b>Posted {{quiz.get_date}}</p>
+            </div>
+            <div class="seccol">
+                <p class="quiznumber"><b>Number of questions: </b>{{quiz.n_ofquestions}}</p>
+                <p class="quizpoints"><b>Total Points: </b>{{quiz.totalpoints}}</p>
+                {% if quiz.totaltime > 0 %}
+                    <p class="quizpoints"><b>Time To Beat:  </b> {{quiz.totaltime}}s</p>
+                {% endif %}
+            </div>
+        </div>
+{% endfor %}

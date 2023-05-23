@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<br>
+<div class="main">
+<div class="mrgin">
+<b> Edit Profile: </b><br><br>
+
+<div class="chngpic">
+    <img class="editpic" src="{{thisuser.ppic.url}}">
+    <span class="editusername">{{user.username}}</span>
+</div>
+
+
+<div class="editform">
+<form class="form-group" method="POST" action="{% url 'edit' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="updatepic" id="inputimg" style="display:none;" value="{{ userinfo.profilepic }}"/>
+    <label for="inputimg">Click me to upload image</label><br>
+    <label class="editlabel">Username:</label>
+    <input class="form-control" type="text" name="username" value="{{thisuser.username}}">
+    <div class="errormsg">{{ usermsg }}</div><br>
+    <input class="btn btn-primary" type="submit" value="Submit">
+    <div class="scsmsg">{{ successmsg }}</div>
+    
+</form>
+</div>
+
+<div id="homemodal" class="modal">
+    <div class="modal-content" id="details">
+        <p>Some text in the Modal..</p>
+      </div>
+ </div>
+ </div>
+ </div>
+{% endblock %}
